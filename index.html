@@ -1,0 +1,253 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="/css/main.min.css"
+      rel="stylesheet"
+    />
+    <title>Daniel Zhu's Portofolio</title>
+    <style>
+      section {
+        padding: 50px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!--navbar-->
+    <nav  class="navbar fixed-top navbar-expand-md  bg-white">
+      <div class="container-xxl">
+        <a href="#intro" class="navbar-brand d-flex align-items-center mr-2">
+          <span  id ="daniel" class="fw-bold text-indigo fs-2"> &lt;daniel-zhu/&gt; </span>
+        </a>
+        <!--toggle button for mobile navbar-->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#main-nav"
+          aria-controls="main-nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--navbar links-->
+        <div
+          class="collapse navbar-collapse bg-white justify-content-end align-center"
+          id="main-nav">
+          <ul id = "nav-items" class="navbar-nav fs-4">
+            <li class="nav-item">
+              <a class="nav-link" href="#aboutme">about me</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#organization">organizations</a>
+            </li>
+            <li class="nav-item dropdown d-none ms-2 d-md-inline ">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                contact
+              </a>
+              <ul class="dropdown-menu pull-right dropdown-menu-white mr-5" aria-labelledby="navbarDarkDropdownMenuLink">
+                <li><a class="dropdown-item" href="mailto:daniel_zhu1@brown.edu">email</a></li>
+                <li><a class="dropdown-item" href="https://www.linkedin.com/in/daniel-z-3728a9219/" target="_blank">linkedin</a></li>
+                <li><a class="dropdown-item" href="https://github.com/danielzhu04" target="_blank">github</a></li>
+                <li><a class="dropdown-item" href="https://calendar.google.com/calendar/u/0/selfsched?sstoken=UUNNUGlKb2VSSmVWfGRlZmF1bHR8ZGY0ZGQyZmExYmFhMDljMjExNzBiYjFhYzg4YzFiMGQ" target="_blank">schedule a meeting</a></li>
+                <li><a class="dropdown-item" href="https://forms.gle/5y6do7SjEMotYLAu8" target="_blank">inquiry form</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--profile image and intro text -->
+    <section id="intro">
+      <div class="container-lg">
+        <div class="row justify-content-between align-items-center sm-justify-content-center mb-5  mt-5">
+          <div class="col-md-6  text-center text-md-start .d-inline-block ">
+            <h1>
+              <div id = "name" class="display-3 fw-bold ">hi,i'm <span></span></div>
+            </h1>
+            <p id = "profileText"class="lead my-4 text-muted">
+              A first-generation, low-income sophomore at Brown University
+              studying Computer Engineering with a focus on robotics and
+              software engineering with experience building applications with
+              Java, Python, Reactjs, HTML, CSS3, and a few other
+              frameworks. <br><br>
+              I am an advocate for socially responsible computing.
+              I believe that technology can build and shape our future. As
+              software developers and engineers, we must not only write
+              clean and efficient code, but responsible code. We must think
+              before we create. 
+              <br><br>This website, which I designed and coded from scratch, contains information about me, my
+              projects, my organizations, and contact information.
+            </p>
+          </div>
+          <div id = "profileImage" class="col-md-4 text-center md-block ml-1 col-sm-12">
+            <dotlottie-player
+            id="background-photo"
+              class="img-fluid "
+              src="/assets/Daniel.json"
+              background="transparent"
+              speed="1"
+              style="width: 575px; height: 575px"
+              loop = "true"
+              autoplay
+            > </dotlottie-player>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--About Me Section-->
+    <section id="aboutme" class ="bg-white mt-5 ">
+          <div class="container-lg">
+            <div class="row justify-content-between align-items-center sm-justify-content-center ">
+              <div class="col-md-6  text-center md-block  ">
+                <dotlottie-player
+                  class="img-fluid"
+                  id="manFloating"
+                  src="/assets/Rb6Upd71yc.json"
+                  background="transparent"
+                  speed="1"
+                  style="width: 675px; height: 675px"
+                  loop = "true"
+                  autoplay
+                ></dotlottie-player>
+              </div>
+              <div class="col-md-6 text-center text-md-end mt-5">
+                <h2>
+                  <div id = "about me" class="display-3 fw-bold">about me</div>
+                </h2>
+                <p id = "aboutMeParagraph" class="lead my-4 text-muted">
+                  I grew up in Lawrence, Massachussetts after my parents immigrated
+                  from Vietnam in 1993. My fascination with technology began early on
+                  when I questioned how televisions worked and further developed
+                  through various engineering, robotics, and computer science programs
+                  in highschool. Through these programs I've gained valuable insight
+                  into these fields. One such insight is the social affects of an age
+                  of rising technology usage. These social affects range from mental
+                  health issues to privacy rights. As such, I am working on building
+                  socially responsible softwares to further integrate technology into our day-to-day lives in a balanced manner.
+                  <br></br>I am most comfortable with Java, Python, HTML, CSS, and React.js. Using
+                  these tech stacks, I have built websites, complex puzzle algortihms
+                  for games such as PacMan and Tetris, and solved real world problems.
+                  My full list of tech stacks can be found on my LinkedIn.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    <section id="projects">
+      <div class="container-lg">
+        <div class="row justify-content-between sm-justify-content-center mb-5 mr-5 mt-5">
+          <div class="col-md-5  text-center text-md-start .d-inline-block ">
+            <h3>
+              <div id = "projects" class="display-3 fw-bold">projects</div>
+            </h3>
+            <p id = "projectParagraph"class="lead my-4 text-muted">
+              While learning theory is great, I
+              prefer to be hands-on with my education. I am constantly ideating
+              and developing new technologies to solve the next problem. Below are
+              a few of my projects and on the right is my most recent project. Check out my GitHub for further details on my
+              software engineering projects.
+              <li id = "projectParagraph" class="text-muted lead">Solar Vehicle with Optimized Gears</li>
+              <li id = "projectParagraph" class="text-muted lead">Optimized Projectile Launcher</li>
+              <li id = "projectParagraph" class="text-muted lead">Nutritional Calculator for senior citizens</li>
+              <li id = "projectParagraph" class="text-muted lead">Vibration Isolaton Chamber</li>
+              <li id = "projectParagraph" class="text-muted lead">Airport Travel Planner</li>
+              <li id = "projectParagraph" class="text-muted lead">Image Resizer</li>
+              <li id = "projectParagraph" class="text-muted lead">Index-Query Search Engine</li>
+              <li id = "projectParagraph" class="text-muted lead">PacMan</li>
+              <li id = "projectParagraph" class="text-muted lead">Tetris</li>
+            </p>
+          </div>
+          <!--project card-->
+          <div class="card sm-justify-content-center col-md-7 " style="width:500px;">
+            <dotlottie-player
+            id="background-photo"
+              class="img-fluid "
+              src="/assets/lssCJCkYfb.json"
+              background="transparent"
+              speed="1"
+              loop="true"
+              autoplay
+            > </dotlottie-player>
+            <div class="card-body">
+              <h5 class="card-title fw-bold">PurePlate</h5>
+              <p class="card-text text-muted">A webpage built off a complex algorithm to encourage sustainable growing and nourishment amongst senior citizens. <br> <br>This project was a developed as a final project using React.js for CSCI:0320 and was built by 3 other team members.<br><br> This project was developed in Typescript, HTML, and CSS.</p>
+              <a id ="projectButton" href="https://github.com/danielzhu04/PurePlate-Final-Project-" target="blank" >view project</a>
+            </div>
+            <div class="card-footer bg-white">
+              <small class="text-muted ">Last updated 2 months ago</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--organizations-->
+    <section id="organization">
+      <div class = "container-lg ">
+        <div id = "OrganizationRow"class="row-1 justify-content-center sm-justify-content-center mb-5 mt-5">
+          <h4>
+            <div class="display-3 text-center fw-bold">organizations</div>
+          </h4>
+        </div>
+        <div class="row mb-2 m-1 align-items-center">
+        <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+            <a class="thumbnail" href="https://mites.mit.edu/ " target="_blank">
+                <img id ="mitesLogo"class="img-fluid" src="/assets/MITES.png" alt="">
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+            <a class="thumbnail" href="https://engineering.brown.edu/" target="_blank">
+                <img class="img-fluid" src="/assets/logo_engin.png" alt="">
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+            <a class="thumbnail" href="https://www.thrivescholars.org/" target="_blank">
+                <img class="img-fluid" src="/assets/Thrive_Scholars_Logo.png" alt="">
+            </a>
+        </div>
+        
+        </div>
+        <div class="row align-items-center" >
+        <div class="col-lg-4 col-md-4 col-xs-4 thumb" target="_blank">
+            <a class="thumbnail" href="https://www.massiah.com/">
+                <img id = "massiahLogo"class="img-fluid" src="/assets/Massiah+Logo+Teal.png" alt="">
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+            <a class="thumbnail" href="https://www.ewb-usa.org/" target="_blank">
+                <img class="img-fluid" src="/assets/ewb-logos-2017-rgb-primary-blue_orig.png" alt="">
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+            <a class="thumbnail" href="https://www.betterworldxdesign.com/" target="_blank">
+                <img id="bwdLogo" class="img-fluid" src="/assets/BWDLogo.png" alt="">
+            </a>
+        </div>
+      </div>
+      <div class="row align-items-center align-self: center" >
+        <div class="col-lg-4 col-md-4 col-xs-4 thumb">
+          <a class="thumbnail align-self-center" href="https://www.edgeconsortium.org/" target="_blank">
+              <img id="edgeLogo" class="img-fluid" src="/assets/edge.png" alt="">
+          </a>
+      </div>
+      </div>
+
+      </div>
+    </section>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+      type="module"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,282 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+//custom vars
+:root{
+  --bs-body-font-family: 'Roboto Mono', monospace;
+}
+.navbar{
+  transition: 2s;
+  display: inline-block;
+  opacity: 0;
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0; /* Gives that scrolling effect as the typing happens */
+  white-space: nowrap;
+  animation: fadeInDown 3s ease 3.5s forwards;
+  // animation: 
+  //   typingNav 4s steps(69, end)
+}
+@keyframes typingNav {
+  from { width: 0; border-right: .15em solid black; }
+  to { width: 99%;
+    border-right: .15em solid white;}
+}
+.nav-link{
+  transition: .5s ease-in-out;
+
+}
+.nav-link:hover {
+  color: rgb(124, 49, 252) !important;
+  scale: 1.1;
+  transition: .5s ease-in-out;
+}
+
+.dropdown:hover .dropdown-menu{
+  display: block;
+  text-align: center;
+  border-radius: 10px;
+  animation :fadeInDown 1s  ease-in-out;
+  
+}
+.dropdown-item{
+  transition: .5s ease-in-out;
+
+}
+.dropdown-item:hover{
+  color: rgb(124, 49, 252) !important;
+  scale: 1.1;
+  transition: .5s ease-in-out;
+  background-color: transparent;
+}
+
+.navbar-brand{
+  color:rgb(124, 49, 252);
+}
+.thumb{
+  transition: 1.2s;
+
+}
+.thumb:hover{
+  scale:1.2;
+
+}
+#wilson{
+  padding-left: 2%;
+}
+
+#profileText, #profileImage, #aboutMeParagraph, #projectParagraph, #manFloating, .card, .thumb{
+  opacity: 0;
+  animation: fadeInRight 3s ease 3.5s forwards;
+}
+.card{
+  transition:1.2s;
+}
+.card:hover{
+  scale: 1.05;
+}
+
+@keyframes fadeInRight {
+  from{
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes fadeInDown {
+  from{
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  25% { border-color: rgb(0, 0, 0); }
+}
+#nav-items:hover{
+  color:indigo;
+}
+#about{
+  display: inline-block;
+  text-align: right;
+  align-items: end;
+}
+
+h1 {
+  display: inline-block;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+}
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 99% }
+}
+span{
+  transition: 1.2s;
+}
+span:hover{
+  scale: 1.1;
+}
+h2 {
+  display: inline-block;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid rgb(0, 0, 0); /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing2 1.75s steps(9, end),
+    blink-caret 1s step-end infinite;
+}
+/* The typing effect */
+@keyframes typing2 {
+  from { width: 0 }
+  to { width: 60% }
+}
+
+h3 {
+  display: inline-block;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid rgb(0, 0, 0); /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing3 1.75s steps(9, end),
+    blink-caret 1s step-end infinite;
+}
+/* The typing effect */
+@keyframes typing3 {
+  from { width: 0 }
+  to { width: 70% }
+}
+#OrganizationRow{
+width:fit-content;
+align-items: center;
+text-align: center;
+margin: auto;
+padding: 10px;
+
+}
+h4 {
+
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid rgb(0, 0, 0); /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  // margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing4 1.75s steps(13, end),
+    blink-caret1 1s step-end infinite;
+}
+@keyframes typing4 {
+  from { width: 0; border-right: .15em solid black; }
+  to { width: 99%;
+    border-right: .15em solid white;}
+}
+@keyframes blink-caret1 {
+  from, to { border-color: transparent }
+  25% { border-color: rgb(0, 0, 0); }
+}
+
+#projectButton{
+  background-color:rgb(124, 49, 252);
+  text-decoration: none;
+  width: 150px;
+  height: auto;
+  color: white;
+  border-radius: 5px;
+  display: inline-block;
+  white-space: nowrap;
+  justify-content: center;
+  transition: 1.2s;
+  text-align: center;
+}
+#projectButton:hover{
+  scale: 1.1;
+}
+
+
+.thumbnail #massiahLogo{
+  scale:.8;
+  transform:translateY(-10px);
+  display: inline-block;
+
+}
+.thumbnail #edgeLogo{
+  scale:.8;
+  display: inline-block;
+  align-self: center;
+}
+
+.thumbnail #bwdLogo{
+  scale:1.1;
+}
+.thumbnail #mitesLogo{
+ scale: 1.4;
+ transform: translateY(20px);
+}
+#name span{
+  position: relative;
+}
+#name span::before{
+  content: "wilson";
+  color:rgb(124, 49, 252);
+  animation: words 26s infinite;
+}
+#name span::after{
+  content: "";
+  position: absolute;
+  width: calc(100% + 8px);
+  height: 100%;
+  background-color: #ffffff;
+  border-left: 2px solid rgb(124, 49, 252);
+  right: -8px;
+  animation: cursor .75s infinite, 
+  typing 26s steps(13) infinite;
+}
+@keyframes cursor {
+  to{
+      border-left: 5px solid #00000000;
+  }
+}
+
+@keyframes words {
+  0%,20%{
+      content: "wilson.";
+  }
+  21%,40%{
+      content: "a developer.";
+  }
+  41%,60%{
+      content: "an engineer.";
+  }
+  61%,80%{
+      content: "a designer.";
+  }
+  81%,100%{
+      content: "a student.";
+  }
+}
+@keyframes typing {
+  10%,15%,30%,35%,50%,55%,70%,75%,90%,95%{
+      width: 0;
+  }
+  5%,20%,25%,40%,45%,60%,65%,80%,85%{
+      width: calc(100% + 8px);
+  }
+}
