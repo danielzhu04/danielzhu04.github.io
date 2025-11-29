@@ -7,10 +7,104 @@
       href="/css/main.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Daniel Zhu's Portofolio</title>
     <style>
       section {
         padding: 50px 0;
+      }
+      
+      /* Project icon hover effects */
+      .project-links a {
+        transition: all 0.3s ease;
+      }
+      
+      .project-links a:hover {
+        transform: scale(1.15);
+        color: #0476d0 !important;
+      }
+      
+      .project-image-container {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .project-image-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+      }
+      
+      /* Remove blinking cursor from project titles */
+      #projects h3 {
+        border-right: none !important;
+        animation: none !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        width: auto !important;
+      }
+      
+      /* Flip card styles */
+      .flip-card {
+        background-color: transparent;
+        width: 575px;
+        height: 575px;
+        perspective: 1000px;
+        cursor: pointer;
+        margin: 0 auto;
+      }
+      
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+      }
+      
+      .flip-card.flipped .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+      
+      .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+      
+      .flip-card-back {
+        transform: rotateY(180deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .flip-card-back img {
+        width: 575px;
+        height: 575px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      }
+      
+      @media (max-width: 768px) {
+        .flip-card {
+          width: 100%;
+          height: auto;
+          max-width: 575px;
+        }
+        .flip-card-back img {
+          width: 100%;
+          height: auto;
+          max-width: 575px;
+        }
       }
     </style>
   </head>
@@ -71,116 +165,108 @@
               <div id = "name" class="display-3 fw-bold ">hi,i'm <span></span></div>
             </h1>
             <p id = "profileText"class="lead my-4 text-muted">
-              A junior at Brown University studying Computer Science and Neuroscience
-              with a focus on applications of artificial intelligence and software engineering 
-              to healthcare. I have experience building applications with
+              My name is Daniel Zhu! I am a senior at Brown University studying Computer Science.
+              I have experience building applications with
               Java, Python, Typescript, HTML, CSS, and a few other
               languages. <br><br>
 
-              I believe that technology will become increasingly relevant in the future, especially
-              in the field of medicine. As such, software developers must not only write clean and 
-              efficient code, but also think about the implications of technologies. For example, 
-              AI might introduce aspects of bias to medical imaging. I believe that my computational background
-              will prepare me to address these challenging considerations.<br><br>
-
-              This website contains information about me, my projects, and the organizations I am 
-              involved with. 
+              This website contains information about me,
             </p>
           </div>
           <div id = "profileImage" class="col-md-4 text-center md-block ml-1 col-sm-12">
-            <dotlottie-player
-            id="background-photo"
-              class="img-fluid "
-              src="/assets/Daniel.json"
-              background="transparent"
-              speed="1"
-              style="width: 575px; height: 575px"
-              loop = "true"
-              autoplay
-            > </dotlottie-player>
+            <div class="flip-card" id="profileFlipCard">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <dotlottie-player
+                    id="background-photo"
+                    class="img-fluid"
+                    src="/assets/Daniel.json"
+                    background="transparent"
+                    speed="1"
+                    style="width: 575px; height: 575px"
+                    loop="true"
+                    autoplay
+                  ></dotlottie-player>
+                </div>
+                <div class="flip-card-back">
+                  <img src="/assets/anime_profile.png" alt="Anime Profile Picture">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <!--About Me Section-->
-    <section id="aboutme" class ="bg-white mt-5 ">
-          <div class="container-lg">
-            <div class="row justify-content-between align-items-center sm-justify-content-center ">
-              <div class="col-md-6  text-center md-block  ">
-                <dotlottie-player
-                  class="img-fluid"
-                  id="manFloating"
-                  src="/assets/Rb6Upd71yc.json"
-                  background="transparent"
-                  speed="1"
-                  style="width: 675px; height: 675px"
-                  loop = "true"
-                  autoplay
-                ></dotlottie-player>
-              </div>
-              <div class="col-md-6 text-center text-md-end mt-5">
-                <h2>
-                  <div id = "about me" class="display-3 fw-bold">about me</div>
-                </h2>
-                <p id = "aboutMeParagraph" class="lead my-4 text-muted">
-                  I grew up in Phoenix, Arizona before I moved to the Bay Area when I was in 3rd grade.
-                  I became interested in medicine at a young age through personal experiences with the healthcare
-                  system. My passion for medicine grew in high school and as an undergraduate through my clinical
-                  experiences volunteering at local hospitals and shadowing physicians. 
-                  
-                  Another one of my interests is computer science. My fascination with computer science and 
-                  technology developed in high school when I took my school's AP Computer Science course and had the opportunity to experiment 
-                  with my own Raspberry PI. I am working to combine these interests by building 
-                  software that further integrates technology with medicine.
+    <section id="projects">
+      <div class="container-lg">
+        <!-- Section Title -->
+        <div class="row">
+          <div class="col-12 text-center mb-5">
+            <h2 class="display-3 fw-bold">Featured Projects</h2>
+            <div style="width: 60px; height: 4px; background: linear-gradient(to right, #0476d0, #7c31fc); margin: 20px auto;"></div>
+          </div>
+        </div>
 
-                  <br></br>
-                  I am comfortable with Java, Python, HTML, CSS, Typescript, C++, and C. Using this 
-                  knowledge, I have built websites, complex AI models for tasks such as playing Paxcon and 
-                  classifying images, and solved real world problems.
-                </p>
+        <!-- Project Entry 1 -->
+        <div class="row align-items-center mb-5 pb-5">
+          <!-- Project Image -->
+          <div class="col-md-5 mb-4 mb-md-0">
+            <div class="project-image-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              <img src="/assets/projects/project1.png" alt="GENI-AI Bioinformatics Chatbot" class="img-fluid" style="width: 100%; height: auto; object-fit: cover;">
+            </div>
+          </div>
+          
+          <!-- Project Content -->
+          <div class="col-md-7">
+            <div class="ps-md-4">
+              <h3 class="fw-bold mb-3" style="font-size: 2.5rem;">Bioinformatics Chatbot</h3>
+              <p class="text-muted lead mb-4" style="font-size: 1.1rem; line-height: 1.6;">
+                Developed the GENI-AI chatbot to guide researchers through Ma'ayan Lab web applications (e.g., Enrichr, ChEA3, Geneshot), 
+                enabling 10,000+ monthly users to analyze diverse data formats and receive figures and summary reports via natural language. 
+                Created 10 new MCP servers with the lab's applications and integrated with LangGraph's agentic framework, enabling the chatbot 
+                to autonomously chain multi-step bioinformatics workflows through dynamic tool composition and automated resource selection. 
+                Deployed GENI-AI and MCP servers on a 16-node Kubernetes cluster, implementing a caching system to efficiently store user data.
+              </p>
+              <div class="project-links">
+                <a href="https://chatbot.k8s.dev.maayanlab.cloud/" target="_blank" class="btn btn-link text-dark p-0 me-4" style="font-size: 2rem; text-decoration: none;" title="GitHub Repository">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://chatbot.k8s.dev.maayanlab.cloud/" target="_blank" class="btn btn-link text-dark p-0" style="font-size: 2rem; text-decoration: none;" title="Live Demo">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
               </div>
             </div>
           </div>
         </div>
-    </section>
-    <section id="projects">
-      <div class="container-lg">
-        <div class="row justify-content-between sm-justify-content-center mb-5 mr-5 mt-5">
-          <div class="col-md-5  text-center text-md-start .d-inline-block ">
-            <h3>
-              <div id = "projects" class="display-3 fw-bold">projects</div>
-            </h3>
-            <p id = "projectParagraph"class="lead my-4 text-muted">
-              While learning theory is great, I also love to work hands-on by creating projects (both academic and inspired).
-              Below are a few of my projects and on the right is my most recent software engineering project. Check out my GitHub for further project details.
-              <li id = "projectParagraph" class="text-muted lead">Convolutional Neural Network for Classifying Animal Images</li>
-              <li id = "projectParagraph" class="text-muted lead">Nutritional Calculator for Senior Citizens</li>
-              <li id = "projectParagraph" class="text-muted lead">Artificial Intelligence for playing Paxcon</li>
-              <li id = "projectParagraph" class="text-muted lead">Supervised Learning Model to Classify Breast Tumors</li>
-              <li id = "projectParagraph" class="text-muted lead">Image Resizer</li>
-              <li id = "projectParagraph" class="text-muted lead">Index-Query Search Engine</li>
-              <li id = "projectParagraph" class="text-muted lead">Othello</li>
-              <li id = "projectParagraph" class="text-muted lead">Tetris</li>
-            </p>
-          </div>
-          <!--project card-->
-          <div class="card sm-justify-content-center col-md-7 " style="width:500px;">
-            <dotlottie-player
-            id="background-photo"
-              class="img-fluid "
-              src="/assets/lssCJCkYfb.json"
-              background="transparent"
-              speed="1"
-              loop="true"
-              autoplay
-            > </dotlottie-player>
-            <div class="card-body">
-              <h5 class="card-title fw-bold">PurePlate</h5>
-              <p class="card-text text-muted">A webpage built off a complex algorithm to encourage sustainable and nourishing diets for senior citizens. <br> <br>This project was developed as a final project using React.js for CSCI:0320 and was built with 3 other team members.<br><br> This project was developed in Typescript, HTML, and CSS.</p>
-              <a id ="projectButton" href="https://github.com/danielzhu04/PurePlate-Final-Project.git" target="blank" >view project</a>
+
+        <!-- Project Entry 2 -->
+        <div class="row align-items-center mb-5">
+          <!-- Project Image -->
+          <div class="col-md-5 mb-4 mb-md-0">
+            <div class="project-image-container" style="border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+              <img src="/assets/projects/project2.png" alt="Multimodal Diffusion Models for Protein Generation" class="img-fluid" style="width: 100%; height: auto; object-fit: cover;">
             </div>
-            <div class="card-footer bg-white">
-              <small class="text-muted ">Last updated 2 months ago</small>
+          </div>
+          
+          <!-- Project Content -->
+          <div class="col-md-7">
+            <div class="ps-md-4">
+              <h3 class="fw-bold mb-3" style="font-size: 2.5rem;">Multimodal Diffusion Models for Protein Generation</h3>
+              <p class="text-muted lead mb-4" style="font-size: 1.1rem; line-height: 1.6;">
+                Developed zero-shot text-guided protein design pipeline using ProteinGenerator and ProtCLAP, generating novel proteins 
+                from text descriptions, achieving 97%+ structural confidence and 2x better alignment compared to unguided generation. 
+                Engineered a partial diffusion strategy (RFDiffusion) to explore protein dynamics, sampling 500 candidate structures 
+                of the Abl1 kinase domain and successfully mapping its functional conformational landscape by generating biologically 
+                relevant alternative states. Built using Python and PyTorch.
+              </p>
+              <div class="project-links">
+                <a href="https://github.com/danielzhu04/cs2840-final" target="_blank" class="btn btn-link text-dark p-0 me-4" style="font-size: 2rem; text-decoration: none;" title="GitHub Repository">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.overleaf.com/read/ktjtttprgjqy#39d833" target="_blank" class="btn btn-link text-dark p-0" style="font-size: 2rem; text-decoration: none;" title="Research Paper">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -248,5 +334,16 @@
       src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
       type="module"
     ></script>
+    <script>
+      // Profile picture flip functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const flipCard = document.getElementById('profileFlipCard');
+        
+        flipCard.addEventListener('click', function() {
+          // Toggle flipped class on each click
+          this.classList.toggle('flipped');
+        });
+      });
+    </script>
   </body>
 </html>
