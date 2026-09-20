@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: #111111;
+  background: #edd4b8;
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #111111;
+  color: #ffffff;
+}
+
+.hero-band {
+  background-color: #dde3e8;
+}
+
+.typing-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 3px;
+  background-color: #000000;
+  vertical-align: -2px;
+  animation: caret-blink 1s step-end infinite;
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(72px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-down {
+  from {
+    opacity: 0;
+    transform: translateY(-36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-up,
+.reveal-down {
+  opacity: 0;
+}
+
+.reveal-up {
+  animation: reveal-up 1.2s ease both;
+}
+
+.reveal-down {
+  animation: reveal-down 0.8s ease both;
+}
+
+.reveal-delay-1 { animation-delay: 0.1s; }
+.reveal-delay-2 { animation-delay: 0.25s; }
+.reveal-delay-3 { animation-delay: 0.4s; }
+.reveal-delay-4 { animation-delay: 0.55s; }
+
+@keyframes name-flash {
+  0% { color: #2563eb; }
+  16% { color: #db2777; }
+  32% { color: #059669; }
+  48% { color: #d97706; }
+  64% { color: #7c3aed; }
+  80% { color: #0891b2; }
+  100% { color: #2563eb; }
+}
+
+.name-flash {
+  animation: name-flash 8.8s linear infinite;
+}
+
+@keyframes logo-marquee {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.logo-track {
+  animation: logo-marquee 28s linear infinite;
+}
+
+.logo-track:has(a:hover) {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .reveal-down {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .name-flash,
+  .logo-track {
+    animation: none;
+  }
+}

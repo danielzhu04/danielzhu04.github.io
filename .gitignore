@@ -1,3 +1,9 @@
 node_modules/
-danielzhu04.github.io.code-workspace
-README_DEV.md
+.DS_Store
+dist/
+*.local
+.env
+.env.*
+
+old-website/
+version2-website/
