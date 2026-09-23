@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import HeroField from '../components/HeroField'
 import profile from '../assets/profile.jpg'
 
 const facts = [
@@ -47,8 +48,9 @@ const Hero = () => {
   }, [interestIndex, interestText, isDeleting])
 
   return (
-    <section id="top" className="hero-band overflow-hidden">
-      <div className="reveal-up mx-auto flex max-w-page flex-col items-center gap-10 px-6 py-16 md:flex-row md:items-center md:justify-between md:gap-16 md:py-20 lg:px-8">
+    <section id="top" className="hero-band relative flex min-h-[calc(100dvh-61px)] items-center overflow-hidden">
+      <HeroField />
+      <div className="reveal-up relative z-10 mx-auto flex w-full max-w-page flex-col items-center gap-10 px-6 py-12 md:flex-row md:items-center md:justify-between md:gap-16 lg:px-8">
         <div className="w-full max-w-xl text-left">
           <h1 className="font-mono text-2xl text-ink sm:text-3xl">
             Hi, I&apos;m <span className="name-flash">Daniel</span>
@@ -77,6 +79,22 @@ const Hero = () => {
           className="h-64 w-64 shrink-0 rounded-full object-cover object-[center_20%] sm:h-80 sm:w-80 lg:h-[22rem] lg:w-[22rem]"
         />
       </div>
+
+      <a
+        href="#timeline"
+        aria-label="Scroll to timeline"
+        className="hero-caret absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-ink/45 transition hover:text-ink/80"
+      >
+        <svg viewBox="0 0 96 28" className="h-7 w-24" fill="none" aria-hidden="true">
+          <path
+            d="M8 8 L48 22 L88 8"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </a>
     </section>
   )
 }

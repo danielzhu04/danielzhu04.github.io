@@ -115,6 +115,20 @@ body {
   animation-play-state: paused;
 }
 
+@keyframes caret-nudge {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 7px);
+  }
+}
+
+.hero-caret {
+  animation: caret-nudge 1.8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-up,
   .reveal-down {
@@ -124,7 +138,8 @@ body {
   }
 
   .name-flash,
-  .logo-track {
+  .logo-track,
+  .hero-caret {
     animation: none;
   }
 }

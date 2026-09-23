@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import lifespanLogo from '../assets/logos/lifespan_logo.png'
+import brownHealthLogo from '../assets/logos/brown_health_logo.png'
 import barrowLogo from '../assets/logos/barrow.png'
 import maayanLogo from '../assets/logos/maayan-lab.png'
 import sinaiLogo from '../assets/logos/mount-sinai.png'
@@ -16,23 +16,23 @@ interface Entry {
 
 const entries: Entry[] = [
   {
-    role: 'Machine Learning Researcher',
-    org: 'RI Hospital',
-    period: '2023 – 2024',
+    role: 'Machine Learning Research Intern',
+    org: 'Computational Neuromodulation Lab, RI Hospital',
+    period: 'Oct 2023 – Oct 2024',
     location: 'Providence, RI',
     color: '#c4a35a',
-    logos: [{ src: lifespanLogo, alt: 'Lifespan / Brown University Health', href: 'https://www.brownhealth.org/' }],
+    logos: [{ src: brownHealthLogo, alt: 'Brown University Health', href: 'https://www.brownhealth.org/' }],
     bullets: [
-      'Developed ML models to predict clinical outcomes from EHR data.',
+      'Collected continuous neurophysiological data from Arduino Due microcontrollers during Deep Brain Stimulation (DBS).',
+      'Developed a Python program to resolve bilateral synchronization of signals between brain hemispheres.',
+      'Implemented an SVM-based ML model to optimize stimulation parameters from real-time data during closed-loop DBS.',
       'Collaborated with physicians to translate research into actionable tools.',
-      'Processed and cleaned large longitudinal patient datasets.',
-      'Presented findings to clinical and research stakeholders.',
     ],
   },
   {
-    role: 'VR Research Intern',
-    org: 'Barrow Neurological Institute',
-    period: '2022 – 2023',
+    role: 'Computer Vision Research Intern',
+    org: 'Virtual Reality Lab, Barrow Neurological Institute',
+    period: 'May 2024 – Sep 2024',
     location: 'Phoenix, AZ',
     color: '#1d4ed8',
     logos: [
@@ -43,16 +43,15 @@ const entries: Entry[] = [
       },
     ],
     bullets: [
-      'Built virtual reality environments for neurological rehabilitation studies.',
-      'Integrated biometric sensors with VR hardware for data collection.',
-      'Conducted user studies with patients and clinical staff.',
-      'Contributed to IRB-approved research protocols.',
+      'Developed an nnU-Net model in PyTorch to segment spine pathologies in CT scans, reaching >90% accuracy on unstructured public CT data and accelerating 500+ 3D models for a VR pathology library.',
+      'Automated segmentation and 3D modeling workflows in 3D Slicer with Python, reducing task time by a factor of 10.',
+      'Implemented a bone decortication feature in a VR spine surgery application used by 70 medical residents in Unreal Engine.',
     ],
   },
   {
     role: 'Bioinformatics Engineer',
     org: "Ma'ayan Lab, Icahn School of Medicine at Mount Sinai",
-    period: '2024 – Present',
+    period: 'Jun 2025 – Present',
     location: 'New York, NY',
     color: '#db2777',
     logos: [
@@ -72,7 +71,7 @@ function ExpandPanel({ bullets, open }: { bullets: string[]; open: boolean }) {
   return (
     <div
       className={`overflow-hidden transition-all duration-300 ease-in-out ${
-        open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+        open ? 'max-h-[40rem] opacity-100' : 'max-h-0 opacity-0'
       }`}
     >
       <ul className="mt-3 space-y-1.5 rounded-xl border border-ink/10 bg-white/70 px-3 py-3 text-left text-sm leading-6 text-ink/80">
@@ -178,7 +177,10 @@ export default function Timeline() {
   const toggle = (i: number) => setOpenIndex((prev) => (prev === i ? null : i))
 
   return (
-    <section className="mx-auto max-w-page px-6 pb-16 pt-12 lg:px-8 reveal-up reveal-delay-2">
+    <section
+      id="timeline"
+      className="mx-auto max-w-page scroll-mt-[72px] px-6 pb-16 pt-12 lg:px-8 reveal-up reveal-delay-2"
+    >
       {/* ── desktop ── */}
       <div className="hidden md:block">
         <div className="grid grid-cols-3 justify-items-center">
