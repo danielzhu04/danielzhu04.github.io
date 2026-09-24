@@ -7,7 +7,7 @@ const Featured = () => {
         href="https://chatbot.k8s.dev.maayanlab.cloud/"
         target="_blank"
         rel="noopener noreferrer"
-        className="block overflow-hidden rounded-card bg-[#f7f2f4] p-6 sm:p-10"
+        className="block overflow-hidden rounded-card bg-panel p-6 sm:p-10"
       >
         <img
           src={projectOne}

@@ -8,19 +8,30 @@ html {
 
 body {
   margin: 0;
-  color: #111111;
-  background: #edd4b8;
+  color: theme('colors.ink');
+  background: theme('colors.page');
   font-family: Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: #111111;
-  color: #ffffff;
+  background: theme('colors.primary.tint');
+  color: theme('colors.ink');
 }
 
 .hero-band {
-  background-color: #dde3e8;
+  background-color: theme('colors.panel');
+}
+
+.hero-line {
+  position: relative;
+  z-index: 10;
+  background-color: theme('colors.panel');
+  box-shadow: 0 0 12px 8px theme('colors.panel');
+}
+
+.hero-photo {
+  box-shadow: 0 0 0 10px theme('colors.panel');
 }
 
 .typing-caret {
@@ -28,7 +39,7 @@ body {
   width: 2px;
   height: 1em;
   margin-left: 3px;
-  background-color: #000000;
+  background-color: theme('colors.ink');
   vertical-align: -2px;
   animation: caret-blink 1s step-end infinite;
 }
@@ -85,13 +96,10 @@ body {
 .reveal-delay-4 { animation-delay: 0.55s; }
 
 @keyframes name-flash {
-  0% { color: #2563eb; }
-  16% { color: #db2777; }
-  32% { color: #059669; }
-  48% { color: #d97706; }
-  64% { color: #7c3aed; }
-  80% { color: #0891b2; }
-  100% { color: #2563eb; }
+  0% { color: theme('colors.primary.DEFAULT'); }
+  33% { color: theme('colors.secondary'); }
+  66% { color: theme('colors.accent'); }
+  100% { color: theme('colors.primary.DEFAULT'); }
 }
 
 .name-flash {

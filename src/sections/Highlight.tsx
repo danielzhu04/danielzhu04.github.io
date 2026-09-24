@@ -4,7 +4,7 @@ const Highlight = () => {
   return (
     <section id="projects" className="mx-auto max-w-page px-6 pb-24 lg:px-8 reveal-up reveal-delay-2">
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div className="overflow-hidden rounded-card bg-[#f3eef6]">
+        <div className="overflow-hidden rounded-card bg-panel">
           <img
             src={projectTwo}
             alt="Multimodal diffusion models for protein generation"
@@ -25,7 +25,7 @@ const Highlight = () => {
             href="https://github.com/danielzhu04/cs2840-final"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-7 inline-flex rounded-full bg-ink px-4 py-2 text-sm font-medium text-white hover:bg-black"
+            className="mt-7 inline-flex rounded-full bg-primary px-4 py-2 text-sm font-medium text-white transition hover:bg-primary-hover"
           >
             View project
           </a>

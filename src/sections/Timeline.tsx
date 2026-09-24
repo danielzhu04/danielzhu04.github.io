@@ -20,7 +20,7 @@ const entries: Entry[] = [
     org: 'Computational Neuromodulation Lab, RI Hospital',
     period: 'Oct 2023 – Oct 2024',
     location: 'Providence, RI',
-    color: '#c4a35a',
+    color: 'bg-accent',
     logos: [{ src: brownHealthLogo, alt: 'Brown University Health', href: 'https://www.brownhealth.org/' }],
     bullets: [
       'Collected continuous neurophysiological data from Arduino Due microcontrollers during Deep Brain Stimulation (DBS).',
@@ -34,7 +34,7 @@ const entries: Entry[] = [
     org: 'Virtual Reality Lab, Barrow Neurological Institute',
     period: 'May 2024 – Sep 2024',
     location: 'Phoenix, AZ',
-    color: '#1d4ed8',
+    color: 'bg-primary',
     logos: [
       {
         src: barrowLogo,
@@ -53,7 +53,7 @@ const entries: Entry[] = [
     org: "Ma'ayan Lab, Icahn School of Medicine at Mount Sinai",
     period: 'Jun 2025 – Present',
     location: 'New York, NY',
-    color: '#db2777',
+    color: 'bg-secondary',
     logos: [
       { src: maayanLogo, alt: "Ma'ayan Lab", href: 'https://labs.icahn.mssm.edu/maayanlab/' },
       { src: sinaiLogo, alt: 'Mount Sinai', href: 'https://icahn.mssm.edu/' },
@@ -74,10 +74,10 @@ function ExpandPanel({ bullets, open }: { bullets: string[]; open: boolean }) {
         open ? 'max-h-[40rem] opacity-100' : 'max-h-0 opacity-0'
       }`}
     >
-      <ul className="mt-3 space-y-1.5 rounded-xl border border-ink/10 bg-white/70 px-3 py-3 text-left text-sm leading-6 text-ink/80">
+      <ul className="mt-3 space-y-1.5 rounded-xl border border-line bg-surface px-3 py-3 text-left text-sm leading-6 text-ink/85">
         {bullets.map((b) => (
           <li key={b} className="flex gap-2">
-            <span className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-ink/40" />
+            <span className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-muted" />
             {b}
           </li>
         ))}
@@ -136,13 +136,17 @@ function RoleCard({
       className="group w-full max-w-[210px] origin-center text-left transition-transform duration-500 ease-in-out hover:-translate-y-2 hover:scale-105"
       aria-expanded={isOpen}
     >
-      <div className="rounded-xl border border-ink/10 bg-white/60 px-3 py-2.5 shadow-sm transition hover:bg-white/90">
+      <div
+        className={`rounded-xl border bg-surface px-3 py-2.5 shadow-sm transition ${
+          isOpen ? 'border-primary/50' : 'border-line hover:border-primary/40'
+        }`}
+      >
         <p className="text-[13px] font-semibold leading-snug text-ink">{entry.role}</p>
-        <p className="mt-0.5 text-[12px] font-medium leading-snug text-ink/70">{entry.org}</p>
+        <p className="mt-0.5 text-[12px] font-medium leading-snug text-ink/75">{entry.org}</p>
         <p className="mt-1 text-[11px] text-muted">
           {entry.period} · {entry.location}
         </p>
-        <p className="mt-1 text-[11px] text-ink/50 group-hover:text-ink/70">
+        <p className={`mt-1 text-[11px] ${isOpen ? 'text-primary' : 'text-muted group-hover:text-primary'}`}>
           {isOpen ? '▲ collapse' : '▼ expand'}
         </p>
       </div>
@@ -166,8 +170,9 @@ function Dot({
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="relative z-10 h-5 w-5 shrink-0 rounded-full border-[3px] border-[#edd4b8] transition-transform hover:scale-125"
-      style={{ backgroundColor: isOpen ? '#111111' : color }}
+      className={`relative z-10 h-5 w-5 shrink-0 rounded-full border-[3px] border-page transition-transform hover:scale-125 ${color} ${
+        isOpen ? 'scale-125 ring-2 ring-ink ring-offset-2 ring-offset-page' : ''
+      }`}
     />
   )
 }

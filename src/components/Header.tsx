@@ -54,18 +54,18 @@ const Header = () => {
   const [open, setOpen] = useState(false)
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `text-[15px] transition ${isActive ? 'text-ink font-semibold' : 'text-ink/60 hover:text-ink'}`
+    `text-[15px] transition ${isActive ? 'text-ink font-semibold' : 'text-muted hover:text-ink'}`
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-[#edd4b8]">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-page">
       <div className="mx-auto flex max-w-page items-center justify-between px-6 py-4 lg:px-8">
 
         {/* ── left: brand — scrolls to top of the current page ── */}
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="font-mono text-[15px] font-semibold text-ink inline-block transition-all duration-1000 ease-in-out hover:text-[#2563eb] hover:scale-125 hover:-translate-y-1"
+          className="font-mono text-[15px] font-semibold text-ink inline-block transition-all duration-1000 ease-in-out hover:text-primary hover:scale-125 hover:-translate-y-1"
         >
           &lt;daniel-zhu-04/&gt;
         </button>
@@ -88,7 +88,7 @@ const Header = () => {
               target={href.startsWith('mailto') ? undefined : '_blank'}
               rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
               aria-label={label}
-              className="text-ink/50 transition hover:text-ink"
+              className="text-muted transition hover:text-primary"
             >
               {icon}
             </a>
@@ -129,7 +129,7 @@ const Header = () => {
                   target={href.startsWith('mailto') ? undefined : '_blank'}
                   rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
                   aria-label={label}
-                  className="text-ink/50 hover:text-ink"
+                  className="text-muted hover:text-primary"
                   onClick={() => setOpen(false)}
                 >
                   {icon}

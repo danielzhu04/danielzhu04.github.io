@@ -48,22 +48,22 @@ const Hero = () => {
   }, [interestIndex, interestText, isDeleting])
 
   return (
-    <section id="top" className="hero-band relative flex min-h-[calc(100dvh-61px)] items-center overflow-hidden">
+    <section id="top" className="hero-band relative isolate flex min-h-[calc(100dvh-61px)] items-center overflow-hidden">
       <HeroField />
       <div className="reveal-up relative z-10 mx-auto flex w-full max-w-page flex-col items-center gap-10 px-6 py-12 md:flex-row md:items-center md:justify-between md:gap-16 lg:px-8">
-        <div className="w-full max-w-xl text-left">
-          <h1 className="font-mono text-2xl text-ink sm:text-3xl">
+        <div className="relative z-10 w-full max-w-xl text-left">
+          <h1 className="hero-line w-fit font-mono text-2xl text-ink sm:text-3xl">
             Hi, I&apos;m <span className="name-flash">Daniel</span>
           </h1>
 
           <ul className="mt-8 list-none space-y-3 text-[16px] leading-7 text-ink/85">
             {facts.map((fact) => (
-              <li key={fact} className="flex gap-3">
+              <li key={fact} className="hero-line flex w-fit max-w-full gap-3">
                 <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-ink" />
                 <span>{fact}</span>
               </li>
             ))}
-            <li className="flex gap-3">
+            <li className="hero-line flex w-fit max-w-full gap-3">
               <span aria-hidden="true" className="mt-[0.7em] h-1.5 w-1.5 shrink-0 rounded-full bg-ink" />
               <span className="min-h-[3.25rem] flex-1">
                 {interestText}
@@ -76,14 +76,14 @@ const Hero = () => {
         <img
           src={profile}
           alt="Daniel Zhu"
-          className="h-64 w-64 shrink-0 rounded-full object-cover object-[center_20%] sm:h-80 sm:w-80 lg:h-[22rem] lg:w-[22rem]"
+          className="hero-photo relative z-10 h-64 w-64 shrink-0 rounded-full object-cover object-[center_20%] sm:h-80 sm:w-80 lg:h-[22rem] lg:w-[22rem]"
         />
       </div>
 
       <a
         href="#timeline"
         aria-label="Scroll to timeline"
-        className="hero-caret absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-ink/45 transition hover:text-ink/80"
+        className="hero-caret absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-muted transition hover:text-primary"
       >
         <svg viewBox="0 0 96 28" className="h-7 w-24" fill="none" aria-hidden="true">
           <path
