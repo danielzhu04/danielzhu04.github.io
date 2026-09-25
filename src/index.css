@@ -137,7 +137,26 @@ body {
   animation: caret-nudge 1.8s ease-in-out infinite;
 }
 
+@keyframes trace-sweep {
+  from {
+    stroke-dashoffset: 420;
+  }
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.trace-sweep {
+  stroke-dasharray: 420 1420;
+  animation: trace-sweep 10s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .trace-sweep {
+    stroke-dasharray: none;
+    animation: none;
+  }
+
   .reveal-up,
   .reveal-down {
     animation: none;

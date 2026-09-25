@@ -16,7 +16,7 @@ const Featured = () => {
         />
       </a>
       <p className="mt-4 text-sm text-muted">
-        Featured work — GENI-AI, a bioinformatics chatbot used by 10,000+ researchers each month.
+        Featured work — GENI-AI, a bioinformatics chatbot that helps researchers find new insights in their data.
       </p>
     </section>
   )

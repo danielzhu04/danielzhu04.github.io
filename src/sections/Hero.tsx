@@ -48,7 +48,7 @@ const Hero = () => {
   }, [interestIndex, interestText, isDeleting])
 
   return (
-    <section id="top" className="hero-band relative isolate flex min-h-[calc(100dvh-61px)] items-center overflow-hidden">
+    <section id="top" className="hero-band relative isolate flex min-h-[calc(100dvh-61px)] sm:min-h-[calc(100dvh-70px)] items-center overflow-hidden">
       <HeroField />
       <div className="reveal-up relative z-10 mx-auto flex w-full max-w-page flex-col items-center gap-10 px-6 py-12 md:flex-row md:items-center md:justify-between md:gap-16 lg:px-8">
         <div className="relative z-10 w-full max-w-xl text-left">

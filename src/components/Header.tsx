@@ -1,146 +1,233 @@
-import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-
-// ── inline SVG icons ────────────────────────────────────────────────────────
-
-const GithubIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
-    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-  </svg>
-)
-
-const LinkedinIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5" aria-hidden="true">
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-  </svg>
-)
-
-const MailIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
-    <rect x="2" y="4" width="20" height="16" rx="2" />
-    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-  </svg>
-)
-
-// ── nav link helper ─────────────────────────────────────────────────────────
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
+import { CellIcon, HelixIcon, NeuronIcon } from './NavIcons'
+import SpikeTrace, { type TraceBounds } from './SpikeTrace'
 
 const navItems = [
-  { label: 'Home', to: '/' },
-  { label: 'Projects', to: '/projects' },
-  { label: 'About', to: '/about' },
+  { label: 'Home', to: '/', Icon: CellIcon },
+  { label: 'Projects', to: '/projects', Icon: HelixIcon },
+  { label: 'About', to: '/about', Icon: NeuronIcon },
 ]
 
-const socials = [
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/daniel--zhu',
-    icon: <LinkedinIcon />,
-  },
-  {
-    label: 'Email',
-    href: 'mailto:daniel_zhu1@brown.edu',
-    icon: <MailIcon />,
-  },
-  {
-    label: 'GitHub',
-    href: 'https://github.com/danielzhu04',
-    icon: <GithubIcon />,
-  },
+const contacts = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/daniel--zhu' },
+  { label: 'Email', href: 'mailto:daniel_zhu1@brown.edu' },
+  { label: 'GitHub', href: 'https://github.com/danielzhu04' },
 ]
 
-// ── component ────────────────────────────────────────────────────────────────
+type Marker = { left: number; width: number }
 
 const Header = () => {
-  const [open, setOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [contactOpen, setContactOpen] = useState(false)
+  const [marker, setMarker] = useState<Marker | null>(null)
+  const [traceBounds, setTraceBounds] = useState<TraceBounds | null>(null)
+  const [animate, setAnimate] = useState(false)
+  const contactRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
+  const navRef = useRef<HTMLElement>(null)
+  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([])
+  const { pathname } = useLocation()
+
+  const activeIndex = navItems.findIndex(({ to }) =>
+    to === '/' ? pathname === '/' : pathname.startsWith(to),
+  )
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `text-[15px] transition ${isActive ? 'text-ink font-semibold' : 'text-muted hover:text-ink'}`
+    `relative z-10 inline-flex h-9 items-center gap-2 rounded-[10px] border-[1.5px] px-3 text-[15px] font-semibold transition-colors ${
+      isActive
+        ? 'border-transparent text-ink'
+        : 'border-dashed border-transparent text-muted hover:border-muted/50 hover:text-ink'
+    }`
+
+  const mobileLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `inline-flex items-center gap-2 text-[15px] font-semibold transition ${
+      isActive ? 'text-ink' : 'text-muted hover:text-ink'
+    }`
+
+  useLayoutEffect(() => {
+    const measure = () => {
+      const header = headerRef.current
+      const link = activeIndex >= 0 ? linkRefs.current[activeIndex] : null
+      setMarker(link?.offsetParent ? { left: link.offsetLeft, width: link.offsetWidth } : null)
+
+      const lastLink = linkRefs.current[navItems.length - 1]
+      const contact = contactRef.current
+      if (!header || !lastLink?.offsetParent || !contact) {
+        setTraceBounds(null)
+        return
+      }
+      const headerBox = header.getBoundingClientRect()
+      setTraceBounds({
+        width: headerBox.width,
+        from: lastLink.getBoundingClientRect().right - headerBox.left,
+        to: contact.getBoundingClientRect().left - headerBox.left,
+      })
+    }
+
+    measure()
+    const observer = new ResizeObserver(measure)
+    if (headerRef.current) observer.observe(headerRef.current)
+    if (navRef.current) observer.observe(navRef.current)
+    document.fonts?.ready.then(measure)
+    return () => observer.disconnect()
+  }, [activeIndex])
+
+  useEffect(() => {
+    if (!marker || animate) return
+    const frame = requestAnimationFrame(() => setAnimate(true))
+    return () => cancelAnimationFrame(frame)
+  }, [marker, animate])
+
+  useEffect(() => {
+    if (!contactOpen) return
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (!contactRef.current?.contains(event.target as Node)) {
+        setContactOpen(false)
+      }
+    }
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setContactOpen(false)
+    }
+
+    document.addEventListener('pointerdown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [contactOpen])
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-line bg-page">
-      <div className="mx-auto flex max-w-page items-center justify-between px-6 py-4 lg:px-8">
-
-        {/* ── left: brand — scrolls to top of the current page ── */}
-        <button
-          type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="font-mono text-[15px] font-semibold text-ink inline-block transition-all duration-1000 ease-in-out hover:text-primary hover:scale-125 hover:-translate-y-1"
-        >
-          &lt;daniel-zhu-04/&gt;
-        </button>
-
-        {/* ── middle: page nav (desktop) ── */}
-        <nav className="hidden items-center gap-7 sm:flex" aria-label="Main navigation">
-          {navItems.map(({ label, to }) => (
-            <NavLink key={to} to={to} end={to === '/'} className={linkClass}>
-              {label}
-            </NavLink>
-          ))}
-        </nav>
-
-        {/* ── right: social icons (desktop) ── */}
-        <div className="hidden items-center gap-4 sm:flex">
-          {socials.map(({ label, href, icon }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith('mailto') ? undefined : '_blank'}
-              rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-              aria-label={label}
-              className="text-muted transition hover:text-primary"
+      <header
+        ref={headerRef}
+        className="fixed inset-x-0 top-0 z-50 border-b border-line bg-page sm:border-b-0"
+      >
+        <div className="flex w-full items-center px-6 py-3 sm:px-8 sm:pb-6 sm:pt-2.5">
+          <div className="flex h-9 min-w-0 items-center gap-8 sm:gap-9">
+            <button
+              type="button"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="origin-left shrink-0 font-mono text-[15px] font-semibold text-ink transition-all duration-1000 ease-in-out hover:-translate-y-1 hover:scale-125 hover:text-primary"
             >
-              {icon}
-            </a>
-          ))}
+              &lt;daniel-zhu-04/&gt;
+            </button>
+
+            <nav
+              ref={navRef}
+              className="relative hidden items-center gap-5 sm:flex"
+              aria-label="Main navigation"
+            >
+              {marker && (
+                <span
+                  aria-hidden="true"
+                  className={`absolute left-0 top-0 h-9 rounded-[10px] border-[1.5px] border-ink bg-surface ${
+                    animate ? 'transition-[transform,width] duration-[420ms] ease-in-out motion-reduce:transition-none' : ''
+                  }`}
+                  style={{ width: marker.width, transform: `translateX(${marker.left}px)` }}
+                />
+              )}
+              {navItems.map(({ label, to, Icon }, i) => (
+                <NavLink
+                  key={to}
+                  ref={(el) => {
+                    linkRefs.current[i] = el
+                  }}
+                  to={to}
+                  end={to === '/'}
+                  className={linkClass}
+                >
+                  {({ isActive }) => (
+                    <>
+                      <span className="inline-flex w-[1.125rem] shrink-0 items-center justify-center" aria-hidden={!isActive}>
+                        <span className={isActive ? 'opacity-100' : 'opacity-0'}>
+                          <Icon />
+                        </span>
+                      </span>
+                      {label}
+                    </>
+                  )}
+                </NavLink>
+              ))}
+            </nav>
+          </div>
+
+          <div className="ml-auto flex items-center gap-3">
+            <div className="relative" ref={contactRef}>
+              <button
+                type="button"
+                className="text-[15px] text-ink transition hover:text-primary"
+                aria-expanded={contactOpen}
+                aria-haspopup="menu"
+                onClick={() => setContactOpen((current) => !current)}
+              >
+                Contact me <span aria-hidden="true">{contactOpen ? '▲' : '▼'}</span>
+              </button>
+              {contactOpen && (
+                <div
+                  role="menu"
+                  className="absolute right-0 top-full z-50 mt-2 min-w-[10.5rem] rounded-xl border border-line bg-surface py-1.5"
+                >
+                  {contacts.map(({ label, href }) => (
+                    <a
+                      key={label}
+                      role="menuitem"
+                      href={href}
+                      target={href.startsWith('mailto') ? undefined : '_blank'}
+                      rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                      className="block px-4 py-2 text-[15px] text-ink/80 transition hover:bg-panel hover:text-primary"
+                      onClick={() => setContactOpen(false)}
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <button
+              type="button"
+              className="rounded-full border border-ink px-3 py-1.5 text-sm sm:hidden"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((current) => !current)}
+            >
+              {menuOpen ? 'Close' : 'Menu'}
+            </button>
+          </div>
         </div>
 
-        {/* ── mobile menu toggle ── */}
-        <button
-          type="button"
-          className="rounded-full border border-ink px-3 py-1.5 text-sm sm:hidden"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? 'Close' : 'Menu'}
-        </button>
-      </div>
+        <SpikeTrace bounds={traceBounds} />
 
-      {/* ── mobile drawer ── */}
-      {open && (
-        <div className="border-t border-line px-6 py-4 sm:hidden">
-          <div className="flex flex-col gap-4 text-[15px]">
-            {navItems.map(({ label, to }) => (
-              <NavLink
-                key={to}
-                to={to}
-                end={to === '/'}
-                className={linkClass}
-                onClick={() => setOpen(false)}
-              >
-                {label}
-              </NavLink>
-            ))}
-            <div className="mt-2 flex gap-4 border-t border-line pt-3">
-              {socials.map(({ label, href, icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith('mailto') ? undefined : '_blank'}
-                  rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                  aria-label={label}
-                  className="text-muted hover:text-primary"
-                  onClick={() => setOpen(false)}
+        {menuOpen && (
+          <div className="border-t border-line px-4 py-4 sm:hidden">
+            <div className="flex flex-col gap-4 text-[15px]">
+              {navItems.map(({ label, to, Icon }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={to === '/'}
+                  className={mobileLinkClass}
+                  onClick={() => setMenuOpen(false)}
                 >
-                  {icon}
-                </a>
+                  {({ isActive }) => (
+                    <>
+                      <span className="inline-flex w-[1.125rem] shrink-0 items-center justify-center" aria-hidden={!isActive}>
+                        <span className={isActive ? 'opacity-100' : 'opacity-0'}>
+                          <Icon />
+                        </span>
+                      </span>
+                      {label}
+                    </>
+                  )}
+                </NavLink>
               ))}
             </div>
           </div>
-        </div>
-      )}
-    </header>
-    <div className="h-[61px]" aria-hidden="true" />
+        )}
+      </header>
+      <div className="h-[61px] sm:h-[70px]" aria-hidden="true" />
     </>
   )
 }

@@ -32,8 +32,8 @@ const RIPPLE_MS = 1400
 const GIF_COOLDOWN_MS = 3000
 
 /** Arc speed — raise these to make the gif fly faster / farther. */
-const GIF_ARC_VX = 0.18
-const GIF_ARC_VX_SPREAD = 0.11
+const GIF_ARC_VX = 0.15
+const GIF_ARC_VX_SPREAD = 0.09
 /** Initial upward kick. Raise to jump higher. */
 const GIF_ARC_VY = 0.5
 const GIF_ARC_VY_SPREAD = 0.15

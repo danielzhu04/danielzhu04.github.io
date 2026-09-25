@@ -16,6 +16,23 @@ interface Entry {
 
 const entries: Entry[] = [
   {
+    role: 'Bioinformatics Engineer',
+    org: "Ma'ayan Lab, Icahn School of Medicine at Mount Sinai",
+    period: 'Jun 2025 – Present',
+    location: 'New York, NY',
+    color: 'bg-secondary',
+    logos: [
+      { src: maayanLogo, alt: "Ma'ayan Lab", href: 'https://labs.icahn.mssm.edu/maayanlab/' },
+      { src: sinaiLogo, alt: 'Mount Sinai', href: 'https://icahn.mssm.edu/' },
+    ],
+    bullets: [
+      'Built GENI-AI, an agentic bioinformatics chatbot that helps researchers find new insights in their data.',
+      "Created 10 MCP servers integrating Ma'ayan Lab tools (Enrichr, ChEA3, Geneshot).",
+      'Deployed on a 16-node Kubernetes cluster with a user-data caching system.',
+      'Integrated LangGraph for multi-step autonomous workflow chaining.',
+    ],
+  },
+  {
     role: 'Machine Learning Research Intern',
     org: 'Computational Neuromodulation Lab, RI Hospital',
     period: 'Oct 2023 – Oct 2024',
@@ -48,23 +65,6 @@ const entries: Entry[] = [
       'Implemented a bone decortication feature in a VR spine surgery application used by 70 medical residents in Unreal Engine.',
     ],
   },
-  {
-    role: 'Bioinformatics Engineer',
-    org: "Ma'ayan Lab, Icahn School of Medicine at Mount Sinai",
-    period: 'Jun 2025 – Present',
-    location: 'New York, NY',
-    color: 'bg-secondary',
-    logos: [
-      { src: maayanLogo, alt: "Ma'ayan Lab", href: 'https://labs.icahn.mssm.edu/maayanlab/' },
-      { src: sinaiLogo, alt: 'Mount Sinai', href: 'https://icahn.mssm.edu/' },
-    ],
-    bullets: [
-      'Built GENI-AI, an agentic bioinformatics chatbot used by 10,000+ monthly users.',
-      "Created 10 MCP servers integrating Ma'ayan Lab tools (Enrichr, ChEA3, Geneshot).",
-      'Deployed on a 16-node Kubernetes cluster with a user-data caching system.',
-      'Integrated LangGraph for multi-step autonomous workflow chaining.',
-    ],
-  },
 ]
 
 function ExpandPanel({ bullets, open }: { bullets: string[]; open: boolean }) {
@@ -74,7 +74,7 @@ function ExpandPanel({ bullets, open }: { bullets: string[]; open: boolean }) {
         open ? 'max-h-[40rem] opacity-100' : 'max-h-0 opacity-0'
       }`}
     >
-      <ul className="mt-3 space-y-1.5 rounded-xl border border-line bg-surface px-3 py-3 text-left text-sm leading-6 text-ink/85">
+      <ul className="mt-3 space-y-1.5 rounded-xl border border-line bg-surface px-4 py-3 text-left text-sm leading-6 text-ink/85">
         {bullets.map((b) => (
           <li key={b} className="flex gap-2">
             <span className="mt-[0.6em] h-1.5 w-1.5 shrink-0 rounded-full bg-muted" />
@@ -90,30 +90,27 @@ function Logos({ entry }: { entry: Entry }) {
   const paired = entry.logos.length > 1
 
   return (
-    <div className={`mt-6 flex items-center justify-center ${paired ? 'gap-4' : ''}`}>
+    <div className={`flex shrink-0 items-center justify-center ${paired ? 'gap-2' : ''}`}>
       {entry.logos.map((logo) => (
         <a
           key={logo.alt}
           href={logo.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex origin-center transition-transform duration-500 ease-in-out hover:-translate-y-2 hover:scale-110"
+          onClick={(event) => event.stopPropagation()}
+          className="inline-flex origin-center transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:scale-105"
         >
-          {logo.alt === 'Mount Sinai' ? (
-            <img
-              src={logo.src}
-              alt={logo.alt}
-              className="h-48 w-auto max-w-[150px] object-contain opacity-85 transition hover:opacity-100"
-            />
-          ) : (
-            <img
-              src={logo.src}
-              alt={logo.alt}
-              className={`object-contain opacity-85 transition hover:opacity-100 ${
-                paired ? 'h-32 w-auto max-w-[160px]' : 'h-36 w-auto max-w-[220px]'
-              }`}
-            />
-          )}
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            className={`pointer-events-none w-auto object-contain opacity-85 transition hover:opacity-100 ${
+              logo.alt === 'Mount Sinai'
+                ? 'h-20 max-w-[150px] sm:h-24 sm:max-w-[190px]'
+                : paired
+                  ? 'h-16 max-w-[200px] sm:h-20 sm:max-w-[250px]'
+                  : 'h-20 max-w-[250px] sm:h-24 sm:max-w-[320px]'
+            }`}
+          />
         </a>
       ))}
     </div>
@@ -133,20 +130,20 @@ function RoleCard({
     <button
       type="button"
       onClick={onClick}
-      className="group w-full max-w-[210px] origin-center text-left transition-transform duration-500 ease-in-out hover:-translate-y-2 hover:scale-105"
+      className="group w-full text-left"
       aria-expanded={isOpen}
     >
       <div
-        className={`rounded-xl border bg-surface px-3 py-2.5 shadow-sm transition ${
+        className={`rounded-xl border bg-surface px-4 py-3 shadow-sm transition ${
           isOpen ? 'border-primary/50' : 'border-line hover:border-primary/40'
         }`}
       >
-        <p className="text-[13px] font-semibold leading-snug text-ink">{entry.role}</p>
-        <p className="mt-0.5 text-[12px] font-medium leading-snug text-ink/75">{entry.org}</p>
-        <p className="mt-1 text-[11px] text-muted">
+        <p className="text-[15px] font-semibold leading-snug text-ink">{entry.role}</p>
+        <p className="mt-0.5 text-[13px] font-medium leading-snug text-ink/75">{entry.org}</p>
+        <p className="mt-1 text-[12px] text-muted">
           {entry.period} · {entry.location}
         </p>
-        <p className={`mt-1 text-[11px] ${isOpen ? 'text-primary' : 'text-muted group-hover:text-primary'}`}>
+        <p className={`mt-1 text-[12px] ${isOpen ? 'text-primary' : 'text-muted group-hover:text-primary'}`}>
           {isOpen ? '▲ collapse' : '▼ expand'}
         </p>
       </div>
@@ -186,54 +183,14 @@ export default function Timeline() {
       id="timeline"
       className="mx-auto max-w-page scroll-mt-[72px] px-6 pb-16 pt-12 lg:px-8 reveal-up reveal-delay-2"
     >
-      {/* ── desktop ── */}
-      <div className="hidden md:block">
-        <div className="grid grid-cols-3 justify-items-center">
-          {entries.map((entry, i) => (
-            <RoleCard
-              key={entry.org}
-              entry={entry}
-              isOpen={openIndex === i}
-              onClick={() => toggle(i)}
-            />
-          ))}
-        </div>
-
-        <div className="relative my-5 h-10">
-          <div aria-hidden="true" className="absolute inset-x-0 top-1/2 h-1.5 -translate-y-1/2 bg-ink" />
-          <div className="relative grid h-full grid-cols-3">
-            {entries.map((entry, i) => (
-              <div key={entry.org} className="flex items-center justify-center">
-                <Dot
-                  color={entry.color}
-                  isOpen={openIndex === i}
-                  label={`${openIndex === i ? 'Collapse' : 'Expand'} details for ${entry.org}`}
-                  onClick={() => toggle(i)}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-3 justify-items-center gap-x-6">
-          {entries.map((entry, i) => (
-            <div key={entry.org} className="flex w-full flex-col items-center px-2">
-              <Logos entry={entry} />
-              <ExpandPanel bullets={entry.bullets} open={openIndex === i} />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── mobile ── */}
-      <div className="flex flex-col items-center gap-2 md:hidden">
+      <div className="relative py-10">
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-2.5 top-0 w-1.5 -translate-x-1/2 bg-ink"
+        />
         {entries.map((entry, i) => (
-          <div key={entry.org} className="flex w-full flex-col items-center">
-            <RoleCard entry={entry} isOpen={openIndex === i} onClick={() => toggle(i)} />
-            <div className="relative flex h-10 w-full items-center justify-center">
-              {i < entries.length - 1 && (
-                <div aria-hidden="true" className="absolute left-1/2 top-5 h-16 w-1.5 -translate-x-1/2 bg-ink" />
-              )}
+          <div key={entry.org} className="relative flex items-start gap-5 pb-10 last:pb-0 sm:gap-8">
+            <div className="flex h-[7rem] w-5 shrink-0 items-center justify-center sm:h-[8rem]">
               <Dot
                 color={entry.color}
                 isOpen={openIndex === i}
@@ -241,8 +198,11 @@ export default function Timeline() {
                 onClick={() => toggle(i)}
               />
             </div>
-            <Logos entry={entry} />
-            <div className="mb-6 w-full max-w-[240px]">
+            <div className="flex h-[7rem] w-[14.5rem] shrink-0 items-center justify-center sm:h-[8rem] sm:w-[21rem]">
+              <Logos entry={entry} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <RoleCard entry={entry} isOpen={openIndex === i} onClick={() => toggle(i)} />
               <ExpandPanel bullets={entry.bullets} open={openIndex === i} />
             </div>
           </div>
@@ -251,3 +211,4 @@ export default function Timeline() {
     </section>
   )
 }
+
