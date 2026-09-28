@@ -139,7 +139,7 @@ body {
 
 @keyframes trace-sweep {
   from {
-    stroke-dashoffset: 420;
+    stroke-dashoffset: var(--trace-window, 220);
   }
   to {
     stroke-dashoffset: -1000;
@@ -147,14 +147,14 @@ body {
 }
 
 .trace-sweep {
-  stroke-dasharray: 420 1420;
-  animation: trace-sweep 10s linear infinite;
+  animation: trace-sweep 8s linear 1 forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .trace-sweep {
-    stroke-dasharray: none;
     animation: none;
+    stroke-dasharray: none;
+    opacity: 0;
   }
 
   .reveal-up,

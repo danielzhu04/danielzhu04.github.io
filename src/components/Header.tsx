@@ -13,6 +13,8 @@ const contacts = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/daniel--zhu' },
   { label: 'Email', href: 'mailto:daniel_zhu1@brown.edu' },
   { label: 'GitHub', href: 'https://github.com/danielzhu04' },
+  { label: 'Schedule a meeting', href: 'https://calendar.app.google/G7L5KkhNMGHbJ4Up6' },
+  { label: 'Inquiry form', href: 'https://forms.gle/4YYeFNt5XZjKpykf8' }
 ]
 
 type Marker = { left: number; width: number }
@@ -23,6 +25,10 @@ const Header = () => {
   const [marker, setMarker] = useState<Marker | null>(null)
   const [traceBounds, setTraceBounds] = useState<TraceBounds | null>(null)
   const [animate, setAnimate] = useState(false)
+  const [sweepId, setSweepId] = useState(0)
+  const sweeping = useRef(false)
+  const sweepStarted = useRef(false)
+  const previousIndex = useRef<number | null>(null)
   const contactRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLElement>(null)
   const navRef = useRef<HTMLElement>(null)
@@ -78,6 +84,34 @@ const Header = () => {
     const frame = requestAnimationFrame(() => setAnimate(true))
     return () => cancelAnimationFrame(frame)
   }, [marker, animate])
+
+  const beginSweep = () => {
+    if (sweeping.current || !traceBounds) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    sweeping.current = true
+    setSweepId((current) => current + 1)
+  }
+
+  const endSweep = () => {
+    sweeping.current = false
+  }
+
+  useEffect(() => {
+    if (!traceBounds || sweepStarted.current) return
+    sweepStarted.current = true
+    beginSweep()
+  }, [traceBounds])
+
+  useEffect(() => {
+    if (previousIndex.current === null) {
+      previousIndex.current = activeIndex
+      return
+    }
+    if (activeIndex >= 0 && activeIndex !== previousIndex.current) {
+      beginSweep()
+    }
+    previousIndex.current = activeIndex
+  }, [activeIndex, traceBounds])
 
   useEffect(() => {
     if (!contactOpen) return
@@ -168,7 +202,7 @@ const Header = () => {
               {contactOpen && (
                 <div
                   role="menu"
-                  className="absolute right-0 top-full z-50 mt-2 min-w-[10.5rem] rounded-xl border border-line bg-surface py-1.5"
+                  className="absolute right-0 top-full z-50 mt-2 min-w-[13rem] rounded-xl border border-line bg-surface py-1.5"
                 >
                   {contacts.map(({ label, href }) => (
                     <a
@@ -198,7 +232,7 @@ const Header = () => {
           </div>
         </div>
 
-        <SpikeTrace bounds={traceBounds} />
+        <SpikeTrace bounds={traceBounds} sweepId={sweepId} onSweepEnd={endSweep} />
 
         {menuOpen && (
           <div className="border-t border-line px-4 py-4 sm:hidden">
