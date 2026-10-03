@@ -23,13 +23,12 @@ const AboutIntro = () => {
         </div>
 
         <div className="min-w-0 flex-1 text-center sm:text-left">
-          <h2 className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">Daniel Zhu</h2>
-          <p
-            lang="zh-Hans"
-            className="mt-3 font-calligraphy text-5xl leading-none text-secondary sm:text-6xl"
-          >
-            朱丹尼
-          </p>
+          <h2 className="flex flex-wrap items-baseline justify-center gap-x-8 gap-y-3 sm:justify-start">
+            <span className="text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">Daniel Zhu</span>
+            <span lang="zh-Hans" className="font-calligraphy text-5xl leading-none text-secondary sm:text-6xl">
+              朱丹尼
+            </span>
+          </h2>
           <p className="mx-auto mt-8 max-w-md text-base leading-7 text-muted sm:mx-0">{introBlurb}</p>
         </div>
       </div>

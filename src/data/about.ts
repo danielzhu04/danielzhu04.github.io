@@ -46,8 +46,16 @@ export const collagePhotos: CollagePhoto[] = Object.entries(collageModules)
 
 /** Public playlists only — Spotify's embed player is free and needs no API key. */
 export const spotifyPlaylists: SpotifyPlaylist[] = [
-  // { id: '37i9dQZF1DXcBWIGoYBM5M', label: 'On repeat' },
+  { id: 'https://open.spotify.com/playlist/0HeQklYl0bVxfKnzpBZHUL', label: 'Jpop' },
+  { id: 'https://open.spotify.com/playlist/2nof4ajeLRXLSMO508sk3A', label: 'C' },
+  { id: 'https://open.spotify.com/playlist/25OQf6MjPT9as3La6XcdB8', label: 'K' },
+  { id: 'https://open.spotify.com/playlist/5krabSbinEHQX14x6tknIK', label: 'E' },
 ]
+
+export const monthlyPlaylist: SpotifyPlaylist = {
+  id: 'https://open.spotify.com/playlist/0YqaHCXNT3YSa2faNfieKc',
+  label: "Can I embrace what's ahead — September 2026",
+}
 
 /**
  * Drop covers into src/assets/about/media/{current,books,movies,tv}/.
