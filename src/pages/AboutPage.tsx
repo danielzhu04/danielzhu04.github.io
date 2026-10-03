@@ -1,9 +1,17 @@
-import AboutColumns from '../sections/AboutColumns'
+import AboutIntro from '../sections/AboutIntro'
+import AboutCollage from '../sections/AboutCollage'
+import AboutSongs from '../sections/AboutSongs'
+import AboutMedia from '../sections/AboutMedia'
+import AboutFunFacts from '../sections/AboutFunFacts'
 
 const AboutPage = () => (
   <main className="relative z-0 mx-auto max-w-page px-6 pt-16 lg:px-8">
-    <h1 className="mb-12 text-4xl font-extrabold tracking-tight text-ink sm:text-5xl reveal-up">About</h1>
-    <AboutColumns />
+    <h1 className="sr-only">About</h1>
+    <AboutIntro />
+    <AboutCollage />
+    <AboutSongs />
+    <AboutMedia />
+    <AboutFunFacts />
   </main>
 )
 

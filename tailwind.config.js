@@ -24,6 +24,7 @@ export default {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['Consolas', '"Courier New"', 'ui-monospace', 'monospace'],
+        calligraphy: ['"Ma Shan Zheng"', '"Kaiti SC"', 'STKaiti', 'serif'],
       },
       maxWidth: {
         page: '1120px',

@@ -150,6 +150,51 @@ body {
   animation: trace-sweep 8s linear 1 forwards;
 }
 
+.polaroid {
+  background: theme('colors.surface');
+  padding: 0.55rem 0.55rem 0.2rem;
+  box-shadow: 0 12px 28px rgba(28, 26, 23, 0.08);
+  border: 1px solid theme('colors.line');
+}
+
+.bookshelf {
+  --cover-w: 138px;
+  --cover-h: 207px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 253, 248, 0.08), transparent 55%),
+    linear-gradient(180deg, #5f4c38 0%, #433628 100%);
+}
+
+.shelf-divider {
+  margin: 1.75rem 0 1.5rem;
+  border-top: 1px dashed rgba(246, 241, 233, 0.45);
+}
+
+.shelf-cover {
+  display: block;
+  width: var(--cover-w);
+  height: var(--cover-h);
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 2px;
+  transform: translateY(-8px);
+  box-shadow: 0 16px 18px rgba(0, 0, 0, 0.38);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.group:hover .shelf-cover,
+.shelf-cover:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 28px 22px rgba(0, 0, 0, 0.42);
+}
+
+.shelf-plank {
+  height: 14px;
+  border-radius: 1px 1px 3px 3px;
+  background: linear-gradient(180deg, #e2d0b4 0%, #c4a77e 48%, #9d8160 100%);
+  box-shadow: 0 10px 18px -8px rgba(0, 0, 0, 0.5);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .trace-sweep {
     animation: none;
@@ -168,5 +213,11 @@ body {
   .logo-track,
   .hero-caret {
     animation: none;
+  }
+
+  .shelf-cover,
+  .shelf-cover:hover {
+    transform: none;
+    transition: none;
   }
 }
